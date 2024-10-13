@@ -4,7 +4,7 @@
   "description": "Porvide local hardware function to openblock",
   "main": "src/index.js",
   "scripts": {
-    "fetch": "rimraf tools firmwares && node script/download-tools.js && node script/download-firmwares.js",
+    "fetch": "rimraf tools firmwares && node script/download-firmwares.js && node script/download-tools.js",
     "start": "rimraf ../.openblockData/link && node test/start-server.js --log-level=info",
     "start:debug": "rimraf ../.openblockData/link && node test/start-server.js --log-level=debug",
     "clean": "rimraf ../.openblockData/link tools firmwares",
@@ -27,7 +27,7 @@
     "ble",
     "serialport"
   ],
-  "author": "OpenBlock Team",
+  "author": "lgthevinh",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/openblockcc/openblock-link/issues"
