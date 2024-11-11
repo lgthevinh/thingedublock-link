@@ -3,7 +3,7 @@ const path = require('path');
 const os = require('os');
 const fs = require('fs');
 
-const user = 'lgthevinh';
+const user = 'thingedublock';
 const repo = 'thingedublock-tools';
 const outputdir = path.resolve('./tools');
 const leaveZipped = false;
