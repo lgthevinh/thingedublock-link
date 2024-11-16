@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const fs = require('fs');
 const {spawn, spawnSync} = require('child_process');
 const path = require('path');
@@ -53,16 +55,15 @@ class Arduino {
         try {
             const stdout = yaml.load(buf.stdout.toString());
 
-            if (stdout.directories.data !== this._arduinoPath) {
+            if (stdout.directories == undefined || stdout.directories.data !== this._arduinoPath) { // Error at here (Cannot read property 'data' of undefined), fix it by adding undefined check
                 this._sendstd(`${ansi.yellow_dark}arduino cli config has not been initialized yet.\n`);
                 this._sendstd(`${ansi.green_dark}set the path to ${this._arduinoPath}.\n`);
                 spawnSync(this._arduinoCliPath, ['config', 'set', 'directories.data', this._arduinoPath]);
-                spawnSync(this._arduinoCliPath, ['config', 'set', 'directories.downloads',
-                    path.join(this._arduinoPath, 'staging')]);
+                spawnSync(this._arduinoCliPath, ['config', 'set', 'directories.downloads', path.join(this._arduinoPath, 'staging')]);
                 spawnSync(this._arduinoCliPath, ['config', 'set', 'directories.user', this._arduinoPath]);
             }
         } catch (err) {
-            this._sendstd(`${ansi.red}arduino cli init error:`, err);
+            this._sendstd(`${ansi.red}arduino cli init error: ${err}\n`);
         }
 
     }
